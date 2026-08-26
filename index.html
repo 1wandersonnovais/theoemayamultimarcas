@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="ThéoeMaya Multimarcas - Catálogo Online">
+<title>ThéoeMaya Multimarcas | Catálogo Online</title>
+<style>
+:root{
+  --black:#111111;
+  --gold:#b78932;
+  --gold-light:#9b7025;
+  --white:#ffffff;
+  --gray:#555555;
+  --bg:#ffffff;
+  --card:#ffffff;
+  --line:#e7e1d7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:var(--bg);
+  color:#111111;
+  line-height:1.45;
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1160px,calc(100% - 28px));margin:auto}
+
+/* Header */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(0,0,0,.08);
+}
+.header-inner{
+  min-height:72px;display:flex;align-items:center;
+  justify-content:space-between;gap:14px;
+}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}
+.logo{
+  width:48px;height:48px;border-radius:10px;object-fit:contain;
+  background:#fff;
+}
+.brand-name{font-size:15px;font-weight:800;white-space:nowrap;color:#111}
+.brand-sub{font-size:10px;color:#666;letter-spacing:1.1px;text-transform:uppercase}
+
+.whatsapp{
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:8px;background:#25d366;color:#fff;
+  border-radius:999px;padding:11px 16px;font-size:13px;font-weight:800;
+  white-space:nowrap;
+  transition:background .2s ease, transform .15s ease;
+}
+.whatsapp:hover{background:#1ebe57;transform:scale(1.03)}
+.whatsapp svg{width:22px;height:22px;flex-shrink:0}
+
+/* Hero */
+.hero{padding:28px 0 18px}
+.hero-box{
+  min-height:220px;border:1px solid rgba(0,0,0,.08);
+  border-radius:22px;padding:32px 22px;
+  display:flex;flex-direction:column;justify-content:center;
+  background:#fafafa;
+  position:relative;overflow:hidden;
+}
+.kicker{
+  color:#111;font-size:12px;text-transform:uppercase;
+  letter-spacing:2px;font-weight:700;
+}
+h1{
+  font-size:clamp(26px,6.5vw,42px);
+  line-height:1.1;letter-spacing:-1.2px;
+  max-width:700px;margin:10px 0 12px;color:#111;font-weight:800;
+}
+.hero-copy{color:#333;max-width:560px;font-size:15px;font-weight:500}
+
+/* Categories pills */
+.categories{
+  display:flex;gap:8px;overflow-x:auto;padding:4px 0 22px;
+  scrollbar-width:none;
+}
+.categories::-webkit-scrollbar{display:none}
+.category-pill{
+  flex:0 0 auto;border:1px solid var(--line);background:#fff;
+  box-shadow:0 1px 4px rgba(0,0,0,.03);
+  color:#111;border-radius:999px;padding:9px 14px;
+  font-size:12px;font-weight:700;
+  transition:border-color .2s, color .2s;
+}
+.category-pill:hover{border-color:#111;color:#000}
+
+/* Search */
+.search-area{padding:0 0 22px}
+.search-box{position:relative}
+.search-input{
+  width:100%;height:48px;
+  border:1px solid var(--line);border-radius:14px;
+  background:#fff;color:#111;
+  padding:0 44px 0 16px;font:inherit;font-size:15px;outline:none;
+}
+.search-input::placeholder{color:#999}
+.search-input:focus{border-color:#111;box-shadow:0 0 0 3px rgba(0,0,0,.06)}
+.search-icon{
+  position:absolute;right:15px;top:50%;transform:translateY(-50%);
+  color:#666;font-size:17px;pointer-events:none;
+}
+.search-status{margin-top:9px;color:var(--gray);font-size:12px}
+
+/* Category sections */
+.category{scroll-margin-top:90px;margin:0 0 40px}
+.category-title{
+  display:flex;align-items:center;gap:10px;margin-bottom:14px;
+}
+.category-title:before{
+  content:"";display:block;width:4px;height:22px;background:#111;border-radius:4px;
+}
+.category h2{font-size:20px;letter-spacing:-.4px;color:#111;font-weight:800}
+.category-count{margin-left:auto;color:var(--gray);font-size:12px}
+
+/* Product grid */
+.grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;
+}
+.product{
+  background:var(--card);border:1px solid var(--line);
+  box-shadow:0 2px 10px rgba(0,0,0,.04);
+  border-radius:14px;overflow:hidden;
+}
+.product-img{
+  width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:#f5f5f5;
+  cursor:pointer;
+  transition:opacity .2s ease;
+}
+.product-img:hover{opacity:.92}
+.product-info{padding:11px 12px 14px}
+.product-name{
+  font-size:13px;font-weight:700;min-height:36px;color:#111;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.price{
+  font-size:15px;font-weight:800;color:#111;margin-top:5px;
+}
+
+/* Empty */
+.empty-state{
+  padding:32px 16px;border:1px dashed var(--line);border-radius:16px;
+  color:var(--gray);text-align:center;font-size:14px;
+}
+
+/* Footer */
+footer{
+  margin-top:20px;border-top:1px solid var(--line);
+  padding:28px 0 40px;background:#fafafa;
+}
+.footer-inner{
+  display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+}
+.footer-title{font-weight:800;font-size:15px;color:#111}
+.footer-copy{font-size:12px;color:var(--gray);margin-top:4px}
+.footer-whatsapp{margin-left:auto}
+
+@media(min-width:650px){
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .hero-box{padding:40px}
+}
+@media(min-width:980px){
+  .grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+}
+
+/* Lightbox / visualizador de imagem */
+.lightbox{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.92);
+  padding:16px;
+  touch-action:none;
+  -webkit-user-select:none;
+  user-select:none;
+}
+.lightbox.is-open{
+  display:flex;
+}
+.lightbox-img{
+  max-width:96vw;
+  max-height:92vh;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  border-radius:8px;
+  box-shadow:0 8px 40px rgba(0,0,0,.45);
+  pointer-events:none;
+  touch-action:none;
+}
+.lightbox-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:52px;
+  height:52px;
+  border:none;
+  border-radius:50%;
+  background:#fff;
+  color:#111;
+  font-size:32px;
+  font-weight:700;
+  line-height:1;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 16px rgba(0,0,0,.35);
+  z-index:10001;
+  transition:transform .15s ease, background .15s ease;
+}
+.lightbox-close:hover{
+  background:#f0f0f0;
+  transform:scale(1.08);
+}
+.lightbox-close:active{
+  transform:scale(.96);
+}
+body.lightbox-open{
+  overflow:hidden;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a class="brand" href="#">
+      <img class="logo" src="data:image/png;base64,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" alt="ThéoeMaya Multimarcas">
+      <div>
+        <div class="brand-name">ThéoeMaya Multimarcas</div>
+        <div class="brand-sub">Catálogo digital</div>
+      </div>
+    </a>
+    <a class="whatsapp" id="topWhatsapp" href="#" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="hero-box">
+      <div class="kicker">CATÁLOGO ONLINE</div>
+      <h1>Escolha seus produtos<br>e fale conosco.</h1>
+      <p class="hero-copy">Para comprar ou tirar dúvidas, fale diretamente pelo WhatsApp.</p>
+    </div>
+  </section>
+
+  <nav class="categories" id="categoryNav" aria-label="Categorias"></nav>
+
+  <section class="search-area" aria-label="Busca no catálogo">
+    <div class="search-box">
+      <input class="search-input" id="productSearch" type="search" placeholder="Buscar produto pelo nome..." autocomplete="off" aria-label="Buscar produto pelo nome">
+      <span class="search-icon">⌕</span>
+    </div>
+    <div class="search-status" id="searchStatus" aria-live="polite"></div>
+  </section>
+
+  <div id="catalog"></div>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <div class="footer-title">ThéoeMaya Multimarcas</div>
+      <div class="footer-copy">Veja os produtos e fale conosco pelo WhatsApp.</div>
+    </div>
+    <a class="whatsapp footer-whatsapp" id="footerWhatsapp" href="#" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Falar no WhatsApp
+    </a>
+  </div>
+</footer>
+
+<!-- Visualizador de imagem (lightbox) -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualização da imagem">
+  <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Fechar">×</button>
+  <img class="lightbox-img" id="lightboxImg" alt="">
+</div>
+
+<script>
+/*
+==========================================================
+EDITAR CATÁLOGO — ÚNICA ÁREA QUE VOCÊ PRECISA MEXER
+==========================================================
+
+Para adicionar ou alterar produtos, edite apenas o objeto CONFIG abaixo.
+
+Formato de cada produto:
+{
+  name: "Nome do produto",
+  price: "R$ 99,90",
+  image: "images/produtos/foto.jpg"   // ou URL completa
+}
+
+Dica: coloque as fotos na pasta images/produtos/
+==========================================================
+*/
+
+const CONFIG = {
+  whatsapp: "5537998134286",
+
+  categories: [
+    {
+      id: "casa-utilidades",
+      name: "Casa e Utilidades",
+      products: [
+        {
+          name: "Produto teste - Casa e Utilidades",
+          price: "R$ 49,90",
+          image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iOTAwIiB2aWV3Qm94PSIwIDAgOTAwIDkwMCI+CjxyZWN0IHdpZHRoPSI5MDAiIGhlaWdodD0iOTAwIiBmaWxsPSIjZjVmNWY1Ii8+CjxyZWN0IHg9IjU1IiB5PSI1NSIgd2lkdGg9Ijc5MCIgaGVpZ2h0PSI3OTAiIHJ4PSIyOCIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjZTdlMWQ3IiBzdHJva2Utd2lkdGg9IjMiLz4KPHRleHQgeD0iNDUwIiB5PSI0MDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjM4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMTExMTExIj5DYXNhIGUgVXRpbGlkYWRlczwvdGV4dD4KPHRleHQgeD0iNDUwIiB5PSI0NzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmaWxsPSIjNzc3Nzc3Ij5JbWFnZW0gZG8gcHJvZHV0bzwvdGV4dD4KPC9zdmc+"
+        }
+      ]
+    },
+    {
+      id: "eletronicos-e-eletrodomesticos",
+      name: "Eletrônicos e Eletrodomésticos",
+      products: [
+        {
+          name: "Produto teste - Eletrônicos",
+          price: "R$ 199,90",
+          image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iOTAwIiB2aWV3Qm94PSIwIDAgOTAwIDkwMCI+CjxyZWN0IHdpZHRoPSI5MDAiIGhlaWdodD0iOTAwIiBmaWxsPSIjZjVmNWY1Ii8+CjxyZWN0IHg9IjU1IiB5PSI1NSIgd2lkdGg9Ijc5MCIgaGVpZ2h0PSI3OTAiIHJ4PSIyOCIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjZTdlMWQ3IiBzdHJva2Utd2lkdGg9IjMiLz4KPHRleHQgeD0iNDUwIiB5PSI0MDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjM4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMTExMTExIj5FbGV0csO0bmljb3M8L3RleHQ+Cjx0ZXh0IHg9IjQ1MCIgeT0iNDcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzc3Nzc3NyI+SW1hZ2VtIGRvIHByb2R1dG88L3RleHQ+Cjwvc3ZnPg=="
+        }
+      ]
+    },
+    {
+      id: "cosmeticos",
+      name: "Cosméticos",
+      products: [
+        {
+          name: "Produto teste - Cosméticos",
+          price: "R$ 39,90",
+          image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iOTAwIiB2aWV3Qm94PSIwIDAgOTAwIDkwMCI+CjxyZWN0IHdpZHRoPSI5MDAiIGhlaWdodD0iOTAwIiBmaWxsPSIjZjVmNWY1Ii8+CjxyZWN0IHg9IjU1IiB5PSI1NSIgd2lkdGg9Ijc5MCIgaGVpZ2h0PSI3OTAiIHJ4PSIyOCIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjZTdlMWQ3IiBzdHJva2Utd2lkdGg9IjMiLz4KPHRleHQgeD0iNDUwIiB5PSI0MDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjM4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMTExMTExIj5Db3Ntw6l0aWNvczwvdGV4dD4KPHRleHQgeD0iNDUwIiB5PSI0NzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmaWxsPSIjNzc3Nzc3Ij5JbWFnZW0gZG8gcHJvZHV0bzwvdGV4dD4KPC9zdmc+"
+        }
+      ]
+    },
+    {
+      id: "moda-feminina",
+      name: "Moda Feminina",
+      products: [
+        {
+          name: "Produto teste - Moda Feminina",
+          price: "R$ 89,90",
+          image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iOTAwIiB2aWV3Qm94PSIwIDAgOTAwIDkwMCI+CjxyZWN0IHdpZHRoPSI5MDAiIGhlaWdodD0iOTAwIiBmaWxsPSIjZjVmNWY1Ii8+CjxyZWN0IHg9IjU1IiB5PSI1NSIgd2lkdGg9Ijc5MCIgaGVpZ2h0PSI3OTAiIHJ4PSIyOCIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjZTdlMWQ3IiBzdHJva2Utd2lkdGg9IjMiLz4KPHRleHQgeD0iNDUwIiB5PSI0MDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjM4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMTExMTExIj5Nb2RhIEZlbWluaW5hPC90ZXh0Pgo8dGV4dCB4PSI0NTAiIHk9IjQ3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiM3Nzc3NzciPkltYWdlbSBkbyBwcm9kdXRvPC90ZXh0Pgo8L3N2Zz4="
+        }
+      ]
+    },
+    {
+      id: "moda-masculina",
+      name: "Moda Masculina",
+      products: [
+        {
+          name: "Produto teste - Moda Masculina",
+          price: "R$ 79,90",
+          image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iOTAwIiB2aWV3Qm94PSIwIDAgOTAwIDkwMCI+CjxyZWN0IHdpZHRoPSI5MDAiIGhlaWdodD0iOTAwIiBmaWxsPSIjZjVmNWY1Ii8+CjxyZWN0IHg9IjU1IiB5PSI1NSIgd2lkdGg9Ijc5MCIgaGVpZ2h0PSI3OTAiIHJ4PSIyOCIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjZTdlMWQ3IiBzdHJva2Utd2lkdGg9IjMiLz4KPHRleHQgeD0iNDUwIiB5PSI0MDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjM4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMTExMTExIj5Nb2RhIE1hc2N1bGluYTwvdGV4dD4KPHRleHQgeD0iNDUwIiB5PSI0NzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmaWxsPSIjNzc3Nzc3Ij5JbWFnZW0gZG8gcHJvZHV0bzwvdGV4dD4KPC9zdmc+"
+        }
+      ]
+    },
+    {
+      id: "moda-infantil",
+      name: "Moda Infantil",
+      products: [
+        {
+          name: "Conjunto infantil Feminino canelado",
+          price: "R$ 140,00",
+          image: "https://ik.imagekit.io/theoemayamultimarcas/grok_1787750910393.jpg"
+        }
+      ]
+    }
+  ]
+};
+
+function whatsappUrl() {
+  // Sem mensagem pré-escrita — abre o chat direto
+  return `https://wa.me/${CONFIG.whatsapp}`;
+}
+
+function normalizeText(text) {
+  return String(text)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
+function getProducts() {
+  return CONFIG.categories.flatMap(cat =>
+    cat.products.map(product => ({
+      ...product,
+      categoryId: cat.id,
+      categoryName: cat.name
+    }))
+  );
+}
+
+function escapeHtml(text) {
+  return String(text).replace(/[&<>"']/g, m => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  }[m]));
+}
+
+
+function fallbackImageData(productName) {
+  const safe = String(productName)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900">
+      <rect width="900" height="900" fill="#f5f5f5"/>
+      <rect x="55" y="55" width="790" height="790" rx="28" fill="#ffffff" stroke="#e7e1d7" stroke-width="3"/>
+      <text x="450" y="405" text-anchor="middle" font-family="Arial,sans-serif" font-size="38" font-weight="700" fill="#111111">${safe}</text>
+      <text x="450" y="470" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" fill="#777777">Imagem do produto</text>
+    </svg>`;
+  return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+}
+
+function protectProductImages() {
+  document.querySelectorAll(".product-img").forEach(img => {
+    img.addEventListener("error", function () {
+      if (this.dataset.fallbackApplied === "1") return;
+      this.dataset.fallbackApplied = "1";
+      this.src = fallbackImageData(this.alt || "Produto");
+    });
+    // Clique/toque na imagem abre o visualizador
+    if (!img.dataset.lightboxBound) {
+      img.dataset.lightboxBound = "1";
+      img.addEventListener("click", function () {
+        openLightbox(this.currentSrc || this.src, this.alt);
+      });
+    }
+  });
+}
+
+function render(searchTerm = "") {
+  const nav = document.getElementById("categoryNav");
+  const catalog = document.getElementById("catalog");
+  const status = document.getElementById("searchStatus");
+  const query = normalizeText(searchTerm);
+
+  nav.innerHTML = CONFIG.categories.map(cat =>
+    `<a class="category-pill" href="#${cat.id}">${escapeHtml(cat.name)}</a>`
+  ).join("");
+
+  let totalVisible = 0;
+
+  catalog.innerHTML = CONFIG.categories.map(cat => {
+    const products = cat.products.filter(product =>
+      !query || normalizeText(product.name).includes(query)
+    );
+
+    totalVisible += products.length;
+
+    if (products.length === 0) return "";
+
+    return `
+      <section class="category" id="${cat.id}">
+        <div class="category-title">
+          <h2>${escapeHtml(cat.name)}</h2>
+          <span class="category-count">${products.length} ${products.length === 1 ? "item" : "itens"}</span>
+        </div>
+        <div class="grid">
+          ${products.map(product => `
+            <article class="product">
+              <img class="product-img" src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" loading="lazy">
+              <div class="product-info">
+                <div class="product-name">${escapeHtml(product.name)}</div>
+                <div class="price">${escapeHtml(product.price)}</div>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      </section>
+    `;
+  }).join("");
+
+  if (totalVisible === 0) {
+    catalog.innerHTML = `<div class="empty-state">Nenhum produto encontrado para “${escapeHtml(searchTerm)}”.</div>`;
+  }
+
+  protectProductImages();
+
+  const totalProducts = getProducts().length;
+  status.textContent = query
+    ? `${totalVisible} ${totalVisible === 1 ? "produto encontrado" : "produtos encontrados"} de ${totalProducts}.`
+    : `${totalProducts} produtos no catálogo.`;
+
+  const url = whatsappUrl();
+  document.getElementById("topWhatsapp").href = url;
+  document.getElementById("footerWhatsapp").href = url;
+}
+
+const searchInput = document.getElementById("productSearch");
+searchInput.addEventListener("input", event => {
+  render(event.target.value);
+});
+
+/* Lightbox */
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+const lightboxClose = document.getElementById("lightboxClose");
+let scrollY = 0;
+
+function openLightbox(src, alt) {
+  scrollY = window.scrollY || window.pageYOffset;
+  lightboxImg.src = src;
+  lightboxImg.alt = alt || "Produto";
+  lightbox.classList.add("is-open");
+  document.body.classList.add("lightbox-open");
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${scrollY}px`;
+  document.body.style.left = "0";
+  document.body.style.right = "0";
+  document.body.style.width = "100%";
+}
+
+function closeLightbox() {
+  if (!lightbox.classList.contains("is-open")) return;
+  lightbox.classList.remove("is-open");
+  document.body.classList.remove("lightbox-open");
+  document.body.style.position = "";
+  document.body.style.top = "";
+  document.body.style.left = "";
+  document.body.style.right = "";
+  document.body.style.width = "";
+  window.scrollTo(0, scrollY);
+  lightboxImg.removeAttribute("src");
+  lightboxImg.alt = "";
+}
+
+lightboxClose.addEventListener("click", function (e) {
+  e.stopPropagation();
+  closeLightbox();
+});
+
+lightbox.addEventListener("click", function (e) {
+  if (e.target === lightbox) {
+    closeLightbox();
+  }
+});
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" || e.key === "Esc") {
+    closeLightbox();
+  }
+});
+
+/* Impede gesto de pinça / zoom no lightbox */
+lightbox.addEventListener("touchmove", function (e) {
+  if (e.touches.length > 1) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+document.addEventListener("gesturestart", function (e) {
+  if (lightbox.classList.contains("is-open")) {
+    e.preventDefault();
+  }
+});
+
+render();
+</script>
+</body>
+</html>
